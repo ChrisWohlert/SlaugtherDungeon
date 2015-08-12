@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{02DBB894-3BCD-4BCB-930B-A654FF5D2898}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Repository</RootNamespace>
+    <AssemblyName>Repository</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CHWGameEngine">
+      <HintPath>..\..\CHWGameEngine\CHWGameEngine\bin\Debug\CHWGameEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AttackBehavior\BuffDurationAttackBehavior.cs" />
+    <Compile Include="AttackBehavior\ChainAttackBehavior.cs" />
+    <Compile Include="AttackBehavior\ChangeImageAttackBehavior.cs" />
+    <Compile Include="AttackBehavior\IAttackBehavior.cs" />
+    <Compile Include="AttackBehavior\NormalAttackBehavior.cs" />
+    <Compile Include="AttackBehavior\NovaAttackBehavior.cs" />
+    <Compile Include="AttackBehavior\RejectSpellAttackBehavior.cs" />
+    <Compile Include="AttackBehavior\RemoveTargetSpellAttackBehavior.cs" />
+    <Compile Include="AttackBehavior\SpawnSpellAttackBehavior.cs" />
+    <Compile Include="AttackBehavior\SplitShotAttackBehavior.cs" />
+    <Compile Include="AttackBehavior\TargetAttackBehavior.cs" />
+    <Compile Include="Buffs\Buff.cs" />
+    <Compile Include="Buffs\Slow.cs" />
+    <Compile Include="Characters\Character.cs" />
+    <Compile Include="Characters\Enemy.cs" />
+    <Compile Include="Characters\IKillable.cs" />
+    <Compile Include="Characters\Monster.cs" />
+    <Compile Include="Characters\Player.cs" />
+    <Compile Include="DamageBehavior\IDamageBehavior.cs" />
+    <Compile Include="DamageBehavior\NormalDamageBehavior.cs" />
+    <Compile Include="Energies\IEnergy.cs" />
+    <Compile Include="Energies\Health.cs" />
+    <Compile Include="Energies\InfiniteEnergy.cs" />
+    <Compile Include="Energies\Mana.cs" />
+    <Compile Include="Experience\Experience.cs" />
+    <Compile Include="Experience\IExperience.cs" />
+    <Compile Include="Experience\NormalExperience.cs" />
+    <Compile Include="Loots\HealthPowerUp.cs" />
+    <Compile Include="Loots\ILootable.cs" />
+    <Compile Include="Loots\Loot.cs" />
+    <Compile Include="Loots\PowerUp.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SlaugtherDungeonGame.cs" />
+    <Compile Include="Spells\ActionSlot.cs" />
+    <Compile Include="Spells\Cooldown.cs" />
+    <Compile Include="Spells\Fireball.cs" />
+    <Compile Include="Spells\Frostball.cs" />
+    <Compile Include="Spells\IceGround.cs" />
+    <Compile Include="Spells\Lightningbolt.cs" />
+    <Compile Include="Spells\Spell.cs" />
+    <Compile Include="Spells\SpellHandler.cs" />
+    <Compile Include="Spells\SpellShieldNova.cs" />
+    <Compile Include="Spells\SpellTree.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\easymap.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WizardHatSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MonsterSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Grass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Fireball.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\heart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Frostbolt_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IceGround.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SpellNova.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BrickWall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FloorsMedieval.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
