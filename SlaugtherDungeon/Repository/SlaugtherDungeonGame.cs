@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using CHWGameEngine;
@@ -31,7 +32,7 @@ namespace Repository
         public event Game.SendGraphics Draw;
         public SlaugtherDungeonGame(Graphics g, Size gameSize)
         {
-            gameWorld = new GameWorld(@"C:\Users\Chris\Google Drev\level1.txt");
+            gameWorld = new GameWorld(@"C:\Users\54430\Documents\SlaugtherDungeon\SlaugtherDungeon\Repository\Resources\level1.txt");
             game = new Game(g, gameWorld, gameSize);
             game.Draw += game_Draw;
             game.OutOfVision += game_OutOfVision;

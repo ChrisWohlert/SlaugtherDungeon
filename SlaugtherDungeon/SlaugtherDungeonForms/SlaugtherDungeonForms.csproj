@@ -33,7 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CHWGameEngine">
-      <HintPath>..\..\CHWGameEngine\CHWGameEngine\bin\Debug\CHWGameEngine.dll</HintPath>
+      <HintPath>..\..\..\CHWGameEngine\CHWGameEngine\CHWGameEngine\bin\Debug\CHWGameEngine.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
