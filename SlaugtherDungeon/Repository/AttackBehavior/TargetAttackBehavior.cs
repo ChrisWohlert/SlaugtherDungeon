@@ -32,9 +32,9 @@ namespace Repository.AttackBehavior
             if (spell != null)
             {
                 if (Target == null) Target = spell.Source.Target;
-                spell.MotionBehavior.DistianceTravelledChanged += (d) =>
+                spell.MotionBehavior.Moved += (s, e) =>
                 {
-                    if (d < 300) return;
+                    if (e.TotalDistanceMoved < 300) return;
                     if (Target != null && spell.MotionBehavior.GetType() != typeof(OffensiveMotionBehavior))
                         spell.MotionBehavior = new OffensiveMotionBehavior(spell, GameWorld, Target.Location);
                 };

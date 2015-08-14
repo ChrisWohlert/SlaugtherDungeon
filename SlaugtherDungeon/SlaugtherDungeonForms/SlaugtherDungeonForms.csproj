@@ -32,8 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CHWGameEngine">
-      <HintPath>..\..\CHWGameEngine\CHWGameEngine\bin\Debug\CHWGameEngine.dll</HintPath>
+    <Reference Include="CHWGameEngine, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\CHWGameEngine\CHWGameEngine\CHWGameEngine\bin\Debug\CHWGameEngine.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

@@ -27,9 +27,10 @@ namespace Repository.AttackBehavior
                         spell.SpellHandler.Remove(spell);
                 };
 
-                s.MotionBehavior.DistianceTravelledChanged += d =>
+                s.MotionBehavior.Moved += (movementObject, e) =>
                 {
-                    if (d < s.Range) return;
+                    if (s.Range == 0) return;
+                    if (e.TotalDistanceMoved < s.Range) return;
                     s.SpellHandler.Remove(s);
                 };
             }
