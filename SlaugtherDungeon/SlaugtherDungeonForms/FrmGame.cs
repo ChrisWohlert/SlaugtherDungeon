@@ -19,6 +19,7 @@ namespace SlaugtherDungeonForms
         private Point mouseLocation;
         private Image fireball;
         private Image frostball;
+        private Image nova;
         private Bitmap spellbar;
         public FrmGame()
         {
@@ -38,6 +39,8 @@ namespace SlaugtherDungeonForms
             fireball = Repository.Properties.Resources.Fireball;
             frostball = Repository.Properties.Resources.Frostbolt_small;
             spellbar= Properties.Resources.SpellBar;
+            nova = Repository.Properties.Resources.SpellNova;
+            nova = new Bitmap(nova, new Size(32, 32));
         }
 
         private void InitHUD()
@@ -113,20 +116,27 @@ namespace SlaugtherDungeonForms
             int firstslotX = (this.Size.Width/2 - spellbar.Width/2) + 88;
             int firstslotY = this.Height - spellbar.Height + 50;
 
-            int secondslotX = (this.Size.Width/2 - spellbar.Width/2) + 138;
+            int secondslotX = (this.Size.Width / 2 - spellbar.Width / 2) + 138;
             int secondslotY = this.Height - spellbar.Height + 57;
+
+            int thirdslotX = (this.Size.Width / 2 - spellbar.Width / 2) + 180;
+            int thirdslotY = this.Height - spellbar.Height + 57;
 
             g.DrawImage(spellbar, this.Size.Width / 2 - spellbar.Width / 2, this.Height - spellbar.Height);
             g.DrawImage(fireball, firstslotX, firstslotY);
             g.DrawImage(frostball, secondslotX, secondslotY);
+            g.DrawImage(nova, thirdslotX, thirdslotY);
 
             int cdFirstSlot = game.GetPlayerCooldown(ActionSlot.First).Current;
             int cdSecondSlot = game.GetPlayerCooldown(ActionSlot.Second).Current;
+            int cdThirdSlot = game.GetPlayerCooldown(ActionSlot.Third).Current;
 
             if (cdFirstSlot != 0)
                 g.DrawString(cdFirstSlot.ToString(), new Font("Arial", 20f), Brushes.Black, firstslotX + 10, firstslotY + 10);
-            if(cdSecondSlot != 0)
+            if (cdSecondSlot != 0)
                 g.DrawString(cdSecondSlot.ToString(), new Font("Arial", 20f), Brushes.Black, secondslotX + 5, firstslotY + 10);
+            if (cdThirdSlot != 0)
+                g.DrawString(cdThirdSlot.ToString(), new Font("Arial", 20f), Brushes.Black, thirdslotX + 5, firstslotY + 10);
         }
 
         private void FrmGame_MouseMove(object sender, MouseEventArgs e)

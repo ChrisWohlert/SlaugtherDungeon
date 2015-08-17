@@ -32,8 +32,8 @@ namespace Repository.Characters
             AttackMap.Add(ActionSlot.First, () =>
             {
                 var f = new Fireball(this, GameWorld, 900);
-                f.AttackBehaviors.Add(new SplitShotAttackBehavior(GameWorld));
                 f.AttackBehaviors.Add(new TargetAttackBehavior(GameWorld));
+                f.AttackBehaviors.Add(new SplitShotAttackBehavior(GameWorld));
                 f.AttackBehaviors.Add(new NormalAttackBehavior(GameWorld));
                 return f;
             });
