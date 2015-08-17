@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Deployment.Application;
 using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 using CHWGameEngine;
 using CHWGameEngine.GameObject;
 using Repository;
+using Repository.Characters;
 using Repository.Spells;
 
 namespace SlaugtherDungeonForms
@@ -15,6 +17,9 @@ namespace SlaugtherDungeonForms
         private Font hudFont;
         private Brush hudBrush;
         private Point mouseLocation;
+        private Image fireball;
+        private Image frostball;
+        private Bitmap spellbar;
         public FrmGame()
         {
             InitializeComponent();
@@ -28,6 +33,11 @@ namespace SlaugtherDungeonForms
             
             game.Play();
             game.Draw += game_Draw;
+
+
+            fireball = Repository.Properties.Resources.Fireball;
+            frostball = Repository.Properties.Resources.Frostbolt_small;
+            spellbar= Properties.Resources.SpellBar;
         }
 
         private void InitHUD()
@@ -38,18 +48,18 @@ namespace SlaugtherDungeonForms
 
         void game_Draw(Graphics g)
         {
-            DrawLifeBar(g);
-            DrawManaBar(g);
-            DrawExpBar(g);
+            var player = game.Player;
+            DrawLifeBar(g, player);
+            DrawManaBar(g, player);
+            DrawExpBar(g, player);
             DrawSpellBar(g);
 
             if(game.GameOver)
                 g.DrawString("GAME OVER!", new Font("Ariel", 72, FontStyle.Bold), Brushes.Maroon, Game.Size.Width / 2 - 320, Game.Size.Height / 2 - 50);
         }
 
-        private void DrawLifeBar(Graphics g)
+        private void DrawLifeBar(Graphics g, Player player)
         {
-            var player = game.Player;
             Brush healthColor;
 
             if (player.Health.Percentage < 15)
@@ -69,10 +79,8 @@ namespace SlaugtherDungeonForms
             g.DrawRectangle(new Pen(Color.Black, borderBrushWidth), new Rectangle(5, 40, borderWidth, borderHeight));
         }
 
-        private void DrawManaBar(Graphics g)
+        private void DrawManaBar(Graphics g, Player player)
         {
-            var player = game.Player;
-
             int borderWidth = 300;
             int borderHeight = 15;
             int manaWidth = (int)(borderWidth / (100d / player.Energy.Percentage)) - 1;
@@ -82,9 +90,8 @@ namespace SlaugtherDungeonForms
             g.DrawRectangle(new Pen(Color.Black, 3f), new Rectangle(5, 80, borderWidth, borderHeight));
         }
 
-        private void DrawExpBar(Graphics g)
+        private void DrawExpBar(Graphics g, Player player)
         {
-            var player = game.Player;
             string xp = player.Experience.Current.ToString();
             string maxXp = player.Experience.Max.ToString();
             string level = player.Level.ToString();
@@ -102,9 +109,6 @@ namespace SlaugtherDungeonForms
 
         private void DrawSpellBar(Graphics g)
         {
-            Image fireball = Repository.Properties.Resources.Fireball;
-            Image frostball = Repository.Properties.Resources.Frostbolt_small;
-            Bitmap spellbar = Properties.Resources.SpellBar;
 
             int firstslotX = (this.Size.Width/2 - spellbar.Width/2) + 88;
             int firstslotY = this.Height - spellbar.Height + 50;

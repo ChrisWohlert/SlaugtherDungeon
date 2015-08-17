@@ -30,7 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CHWGameEngine">
+    <Reference Include="CHWGameEngine, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\CHWGameEngine\CHWGameEngine\CHWGameEngine\bin\Debug\CHWGameEngine.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -46,6 +47,7 @@
     <Compile Include="AttackBehavior\BuffDurationAttackBehavior.cs" />
     <Compile Include="AttackBehavior\ChainAttackBehavior.cs" />
     <Compile Include="AttackBehavior\ChangeImageAttackBehavior.cs" />
+    <Compile Include="AttackBehavior\CircleSpellAttackBehavior.cs" />
     <Compile Include="AttackBehavior\IAttackBehavior.cs" />
     <Compile Include="AttackBehavior\NormalAttackBehavior.cs" />
     <Compile Include="AttackBehavior\NovaAttackBehavior.cs" />
@@ -137,10 +139,6 @@
   <ItemGroup>
     <None Include="Resources\FloorsMedieval.png" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\level1.txt" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

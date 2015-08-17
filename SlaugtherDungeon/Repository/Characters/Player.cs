@@ -47,7 +47,7 @@ namespace Repository.Characters
             AttackMap.Add(ActionSlot.Third, () =>
             {
                 var nova = new SpellShieldNova(this, GameWorld, 500);
-                nova.AttackBehaviors.Add(new RejectSpellAttackBehavior(GameWorld));
+                nova.AttackBehaviors.Add(new CircleSpellAttackBehavior(GameWorld));
                 nova.AttackBehaviors.Add(new NovaAttackBehavior(GameWorld));
                 return nova;
             });

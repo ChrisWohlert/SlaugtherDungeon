@@ -50,9 +50,10 @@ namespace Repository.AttackBehavior
                 }
             };
 
-            s.MotionBehavior.DistianceTravelledChanged += d =>
+            s.MotionBehavior.Moved += (movementObject, e) =>
             {
-                if (d < s.Range) return;
+
+                if (e.TotalDistanceMoved < s.Range) return;
                 s.SpellHandler.Remove(s);
             };
         }
