@@ -24,39 +24,6 @@ namespace Repository.Characters
             Health.Max = 5000;
             Health.Current = Health.Max;
             Targets.Add(typeof(Enemy));
-            CreateAttackMap();
-        }
-
-        private void CreateAttackMap()
-        {
-            AttackMap.Add(ActionSlot.First, () =>
-            {
-                var f = new Fireball(this, GameWorld, 900);
-                f.AttackBehaviors.Add(new TargetAttackBehavior(GameWorld));
-                f.AttackBehaviors.Add(new SplitShotAttackBehavior(GameWorld));
-                f.AttackBehaviors.Add(new NormalAttackBehavior(GameWorld));
-                return f;
-            });
-            AttackMap.Add(ActionSlot.Second, () =>
-            {
-                var f = new Frostball(this, GameWorld, 900);
-                f.AttackBehaviors.Add(new BuffDurationAttackBehavior(GameWorld, new Slow(30) { Duration = 3 }));
-                f.AttackBehaviors.Add(new NormalAttackBehavior(GameWorld));
-                return f;
-            });
-            AttackMap.Add(ActionSlot.Third, () =>
-            {
-                var nova = new SpellShieldNova(this, GameWorld, 500);
-                nova.AttackBehaviors.Add(new CircleSpellAttackBehavior(GameWorld));
-                nova.AttackBehaviors.Add(new NovaAttackBehavior(GameWorld));
-                return nova;
-            });
-
-            SpellHandler.Cooldowns.Add(typeof(Fireball), new Cooldown(2));
-            SpellHandler.Cooldowns.Add(typeof(Frostball), new Cooldown(5));
-            SpellHandler.Cooldowns.Add(typeof(SpellShieldNova), new Cooldown(1));
-
-
         }
     }
 }

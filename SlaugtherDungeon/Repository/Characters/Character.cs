@@ -24,8 +24,7 @@ namespace Repository.Characters
         public double MaxHealth { get; set; }
         public IEnergy Energy { get; set; }
         public SpellHandler SpellHandler { get; set; }
-
-        public Dictionary<ActionSlot, Func<Spell>> AttackMap; 
+        public SpellTree SpellTree { get; set; }
         public List<Type> Targets { get; private set; }
 
         #endregion
@@ -86,7 +85,7 @@ namespace Repository.Characters
             Paralax = Paralax.Middleground;
 
             SpellHandler = new SpellHandler(GameWorld, this);
-            AttackMap = new Dictionary<ActionSlot, Func<Spell>>();
+            SpellTree = new SpellTree();
 
             ExperienceWhenKilled = 300;
 
@@ -118,7 +117,7 @@ namespace Repository.Characters
 
         public void Attack(ActionSlot actionSlot)
         {
-            SpellHandler.Cast(AttackMap[actionSlot]());
+            SpellHandler.Cast(SpellTree.AttackMap[actionSlot]());
         }
 
         public object Clone()
