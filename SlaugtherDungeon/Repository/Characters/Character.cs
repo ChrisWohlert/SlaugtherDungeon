@@ -85,7 +85,7 @@ namespace Repository.Characters
             Paralax = Paralax.Middleground;
 
             SpellHandler = new SpellHandler(GameWorld, this);
-            SpellTree = new SpellTree();
+            SpellTree = new SpellTree(this, SpellHandler, GameWorld);
 
             ExperienceWhenKilled = 300;
 
@@ -117,7 +117,9 @@ namespace Repository.Characters
 
         public void Attack(ActionSlot actionSlot)
         {
-            SpellHandler.Cast(SpellTree.AttackMap[actionSlot]());
+            Spell s = SpellTree.GetSpell(actionSlot);
+            if(s != null)
+                SpellHandler.Cast(s);
         }
 
         public object Clone()

@@ -24,13 +24,7 @@ namespace Repository.Characters
 
         private void CreateAttackMap()
         {
-            AttackMap.Add(ActionSlot.First, () =>
-            {
-                var f = new Fireball(this, GameWorld, 600);
-                f.AttackBehaviors.Add(new NormalAttackBehavior(GameWorld));
-                return f;
-            });
-            SpellHandler.Cooldowns.Add(typeof(Fireball), new Cooldown(2));
+
         }
     }
 }

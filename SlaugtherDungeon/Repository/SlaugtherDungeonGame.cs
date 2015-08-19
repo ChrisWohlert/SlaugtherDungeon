@@ -31,7 +31,7 @@ namespace Repository
         public event Game.SendGraphics Draw;
         public SlaugtherDungeonGame(Graphics g, Size gameSize)
         {
-            gameWorld = new GameWorld(@"C:\Users\54430\Google Drev\level1.txt");
+            gameWorld = new GameWorld(@"C:\Users\chris\Google Drev\level1.txt");
             game = new Game(g, gameWorld, gameSize);
             game.Draw += game_Draw;
             game.OutOfVision += game_OutOfVision;
@@ -242,8 +242,13 @@ namespace Repository
 
         public Cooldown GetPlayerCooldown(ActionSlot actionSlot)
         {
-            Type t = Player.AttackMap[actionSlot]().GetType();
-            return Player.SpellHandler.Cooldowns[t];
+            Spell s = Player.SpellTree.GetSpell(actionSlot);
+            Type t = s != null ? s.GetType() : null;
+            if(t != null)
+                if (Player.SpellHandler.Cooldowns.ContainsKey(t))
+                    return Player.SpellHandler.Cooldowns[t];
+
+            return null;
         }
 
         public void ChangeTarget(Point targetLocation, int range, bool fromMap)

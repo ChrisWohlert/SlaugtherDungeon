@@ -24,6 +24,9 @@ namespace Repository.Characters
             Health.Max = 5000;
             Health.Current = Health.Max;
             Targets.Add(typeof(Enemy));
+
+            SpellTree.AddSpell(ActionSlot.First, typeof(Fireball));
+            SpellTree.AddAttackBehavior(typeof(Fireball), typeof(NormalAttackBehavior));
         }
     }
 }

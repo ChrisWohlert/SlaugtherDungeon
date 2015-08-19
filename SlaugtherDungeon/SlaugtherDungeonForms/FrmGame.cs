@@ -126,10 +126,13 @@ namespace SlaugtherDungeonForms
             g.DrawImage(fireball, firstslotX, firstslotY);
             g.DrawImage(frostball, secondslotX, secondslotY);
             g.DrawImage(nova, thirdslotX, thirdslotY);
-
-            int cdFirstSlot = game.GetPlayerCooldown(ActionSlot.First).Current;
-            int cdSecondSlot = game.GetPlayerCooldown(ActionSlot.Second).Current;
-            int cdThirdSlot = game.GetPlayerCooldown(ActionSlot.Third).Current;
+            
+            Cooldown firstCd = game.GetPlayerCooldown(ActionSlot.First);
+            Cooldown secondCd = game.GetPlayerCooldown(ActionSlot.Second);
+            Cooldown thirdCd = game.GetPlayerCooldown(ActionSlot.Third);
+            int cdFirstSlot = firstCd != null ? game.GetPlayerCooldown(ActionSlot.First).Current : 0;
+            int cdSecondSlot = secondCd != null ? game.GetPlayerCooldown(ActionSlot.Second).Current : 0;
+            int cdThirdSlot = thirdCd != null ? game.GetPlayerCooldown(ActionSlot.Third).Current : 0;
 
             if (cdFirstSlot != 0)
                 g.DrawString(cdFirstSlot.ToString(), new Font("Arial", 20f), Brushes.Black, firstslotX + 10, firstslotY + 10);
