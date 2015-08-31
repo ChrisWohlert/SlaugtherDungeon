@@ -17,7 +17,6 @@ namespace Repository.AttackBehavior
         {
             var g = gameObject.Clone() as Fireball;
             g.Angle += 30;
-            g.AttackBehaviors.Remove(this);
             g.Cast();
             var g2 = g.Clone() as Fireball;
             g2.Angle -= 60;
