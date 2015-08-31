@@ -5,3 +5,10 @@ C:\Users\54430\Google Drev\Programmering\C#\Projects\SlaugtherDungeon\UnitTest\b
 C:\Users\54430\Google Drev\Programmering\C#\Projects\SlaugtherDungeon\UnitTest\obj\Debug\UnitTest.csprojResolveAssemblyReference.cache
 C:\Users\54430\Google Drev\Programmering\C#\Projects\SlaugtherDungeon\UnitTest\obj\Debug\UnitTest.dll
 C:\Users\54430\Google Drev\Programmering\C#\Projects\SlaugtherDungeon\UnitTest\obj\Debug\UnitTest.pdb
+C:\Users\54430\Documents\SlaugtherDungeon\SlaugtherDungeon\UnitTest\bin\Debug\UnitTest.dll
+C:\Users\54430\Documents\SlaugtherDungeon\SlaugtherDungeon\UnitTest\bin\Debug\UnitTest.pdb
+C:\Users\54430\Documents\SlaugtherDungeon\SlaugtherDungeon\UnitTest\bin\Debug\SlaugtherDungeon.exe
+C:\Users\54430\Documents\SlaugtherDungeon\SlaugtherDungeon\UnitTest\bin\Debug\SlaugtherDungeon.pdb
+C:\Users\54430\Documents\SlaugtherDungeon\SlaugtherDungeon\UnitTest\obj\Debug\UnitTest.csprojResolveAssemblyReference.cache
+C:\Users\54430\Documents\SlaugtherDungeon\SlaugtherDungeon\UnitTest\obj\Debug\UnitTest.dll
+C:\Users\54430\Documents\SlaugtherDungeon\SlaugtherDungeon\UnitTest\obj\Debug\UnitTest.pdb

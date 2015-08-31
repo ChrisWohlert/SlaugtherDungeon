@@ -39,7 +39,7 @@ namespace Repository
 
         void game_OutOfVision(IGameObject gameObject)
         {
-
+            
         }
 
         void game_Draw(Graphics g)
