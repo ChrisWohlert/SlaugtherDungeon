@@ -4,18 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Repository.Spells.SpellDecorators
-{
-    class NormalAttack : SpellDecorator
-    {
-        public NormalAttack(Spell refSpell) : base(refSpell)
-        {
+namespace Repository.Spells.SpellDecorators {
+    class NormalAttack : SpellDecorator {
+        public NormalAttack(Spell refSpell)
+            : base(refSpell) {
         }
 
-        public override void Cast()
-        {
-            this.Collision += (spell, target) =>
-            {
+        public override void Cast() {
+            this.Collision += (spell, target) => {
                 if (spell != this) return;
                 if (target == spell.Source) return;
 
@@ -23,23 +19,20 @@ namespace Repository.Spells.SpellDecorators
                     spell.SpellHandler.Remove(spell);
             };
 
-            this.MotionBehavior.Moved += (movementObject, e) =>
-            {
+            this.MotionBehavior.Moved += (movementObject, e) => {
                 if (this.Range == 0) return;
                 if (e.TotalDistanceMoved < this.Range) return;
                 this.SpellHandler.Remove(this);
             };
 
-            base.Cast();
+            RefSpell.Cast();
         }
 
-        protected override void MotionBehavior_WallCollision(object sender, EventArgs e)
-        {
-            
+        protected override void MotionBehavior_WallCollision(object sender, EventArgs e) {
+
         }
 
-        public override object Clone()
-        {
+        public override object Clone() {
             return this;
         }
     }

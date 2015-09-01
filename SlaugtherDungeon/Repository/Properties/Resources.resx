@@ -59,52 +59,52 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
+  <XDUDEsd:schema id="root" XDUDEmlns="" XDUDEmlns:XDUDEsd="http://www.w3.org/2001/XDUDEMLSchema" XDUDEmlns:msdata="urn:schemas-microsoft-com:XDUDEml-msdata">
+    <XDUDEsd:import namespace="http://www.w3.org/XDUDEML/1998/namespace" />
+    <XDUDEsd:element name="root" msdata:IsDataSet="true">
+      <XDUDEsd:compleXDUDEType>
+        <XDUDEsd:choice maXDUDEOccurs="unbounded">
+          <XDUDEsd:element name="metadata">
+            <XDUDEsd:compleXDUDEType>
+              <XDUDEsd:sequence>
+                <XDUDEsd:element name="value" type="XDUDEsd:string" minOccurs="0" />
+              </XDUDEsd:sequence>
+              <XDUDEsd:attribute name="name" use="required" type="XDUDEsd:string" />
+              <XDUDEsd:attribute name="type" type="XDUDEsd:string" />
+              <XDUDEsd:attribute name="mimetype" type="XDUDEsd:string" />
+              <XDUDEsd:attribute ref="XDUDEml:space" />
+            </XDUDEsd:compleXDUDEType>
+          </XDUDEsd:element>
+          <XDUDEsd:element name="assembly">
+            <XDUDEsd:compleXDUDEType>
+              <XDUDEsd:attribute name="alias" type="XDUDEsd:string" />
+              <XDUDEsd:attribute name="name" type="XDUDEsd:string" />
+            </XDUDEsd:compleXDUDEType>
+          </XDUDEsd:element>
+          <XDUDEsd:element name="data">
+            <XDUDEsd:compleXDUDEType>
+              <XDUDEsd:sequence>
+                <XDUDEsd:element name="value" type="XDUDEsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <XDUDEsd:element name="comment" type="XDUDEsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </XDUDEsd:sequence>
+              <XDUDEsd:attribute name="name" type="XDUDEsd:string" use="required" msdata:Ordinal="1" />
+              <XDUDEsd:attribute name="type" type="XDUDEsd:string" msdata:Ordinal="3" />
+              <XDUDEsd:attribute name="mimetype" type="XDUDEsd:string" msdata:Ordinal="4" />
+              <XDUDEsd:attribute ref="XDUDEml:space" />
+            </XDUDEsd:compleXDUDEType>
+          </XDUDEsd:element>
+          <XDUDEsd:element name="resheader">
+            <XDUDEsd:compleXDUDEType>
+              <XDUDEsd:sequence>
+                <XDUDEsd:element name="value" type="XDUDEsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </XDUDEsd:sequence>
+              <XDUDEsd:attribute name="name" type="XDUDEsd:string" use="required" />
+            </XDUDEsd:compleXDUDEType>
+          </XDUDEsd:element>
+        </XDUDEsd:choice>
+      </XDUDEsd:compleXDUDEType>
+    </XDUDEsd:element>
+  </XDUDEsd:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -119,7 +119,7 @@
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="easymap" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\easymap.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+    <value>..\Resources\easymap.tXDUDEt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="MonsterSmall" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MonsterSmall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

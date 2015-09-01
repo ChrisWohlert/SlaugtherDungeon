@@ -14,6 +14,7 @@ namespace Repository.Spells
             : base(source, gameWorld, range)
         {
             Image = Properties.Resources.Fireball;
+            Init();
         }
 
         protected override void MotionBehavior_WallCollision(object sender, EventArgs e)

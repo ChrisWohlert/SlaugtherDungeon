@@ -13,10 +13,8 @@ using Repository.Characters;
 using Repository.Properties;
 using Repository.Spells;
 
-namespace Repository
-{
-    public class SlaugtherDungeonGame
-    {
+namespace Repository {
+    public class SlaugtherDungeonGame {
         private GameWorld gameWorld;
         private Game game;
         public bool GameOver;
@@ -29,8 +27,7 @@ namespace Repository
         public event EventHandler Loaded;
         public event EventHandler Updated;
         public event Game.SendGraphics Draw;
-        public SlaugtherDungeonGame(Graphics g, Size gameSize)
-        {
+        public SlaugtherDungeonGame(Graphics g, Size gameSize) {
             gameWorld = File.Exists(@"C:\Users\54430\Google Drev\level1.txt") ? new GameWorld(@"C:\Users\54430\Google Drev\level1.txt") : new GameWorld(@"C:\Users\chris\Google Drev\level1.txt");
 
             game = new Game(g, gameWorld, gameSize);
@@ -38,24 +35,19 @@ namespace Repository
             game.OutOfVision += game_OutOfVision;
         }
 
-        void game_OutOfVision(IGameObject gameObject)
-        {
-            
+        void game_OutOfVision(IGameObject gameObject) {
+
         }
 
-        void game_Draw(Graphics g)
-        {
+        void game_Draw(Graphics g) {
             DrawHealthBars(g);
             if (Draw != null) Draw(g);
         }
 
-        private void DrawHealthBars(Graphics g)
-        {
-            foreach (var go in gameWorld.VisibleGameObjects)
-            {
+        private void DrawHealthBars(Graphics g) {
+            foreach (var go in gameWorld.VisibleGameObjects) {
                 var obj = go as Enemy;
-                if (obj != null)
-                {
+                if (obj != null) {
                     Brush healthColor;
                     if (obj.Health.Percentage < 15)
                         healthColor = Brushes.Red;
@@ -80,31 +72,24 @@ namespace Repository
 
         #region Private Methods
 
-        private void GameLoop()
-        {
-            var t = new Task(() =>
-            {
-                while (!GameOver)
-                {
+        private void GameLoop() {
+            var t = new Task(() => {
+                while (!GameOver) {
                     int timeToSleep = 40;
                     var watch = Stopwatch.StartNew();
-                    try
-                    {
+                    try {
                         var list = gameWorld.GameObjects.ToList();
-                        foreach (var go in list)
-                        {
+                        foreach (var go in list) {
                             go.MotionBehavior.Move();
 
                             var o = go as Monster;
-                            if(o != null) o.Attack(ActionSlot.First); 
+                            if (o != null) o.Attack(ActionSlot.First);
                         }
 
                         gameWorld.CheckCollisions();
                         game.Render();
                         if (Updated != null) Updated(this, EventArgs.Empty);
-                    }
-                    catch (Exception e)
-                    {
+                    } catch (Exception e) {
                         Console.WriteLine(e);
                     }
                     watch.Stop();
@@ -115,13 +100,12 @@ namespace Repository
                 }
                 game.Render();
 
-                
+
             });
             t.Start();
         }
 
-        private void Init()
-        {
+        private void Init() {
             Tile t = new Tile(Resources.Grass, 0);
             TileRepository.Add(t);
             t = new Tile(Resources.Rock, 1);
@@ -139,13 +123,11 @@ namespace Repository
             gameWorld.GameObjects.Add(Player);
             Random r = new Random();
 
-            for (int i = 0; i < 5; i++)
-            {
+            for (int i = 0; i < 5; i++) {
                 DecimalPoint loc;
                 int x;
                 int y;
-                do
-                {
+                do {
                     x = r.Next(2000);
                     y = r.Next(2000);
                     loc = new DecimalPoint(x, y);
@@ -154,29 +136,25 @@ namespace Repository
                 gameWorld.GameObjects.Add(monster);
             }
 
-            if(Loaded != null) Loaded(this, EventArgs.Empty);
+            if (Loaded != null) Loaded(this, EventArgs.Empty);
         }
 
-        private Player CreatePlayer()
-        {
+        private Player CreatePlayer() {
             var p = new Player(gameWorld, new DecimalPoint(1000, 2000));
             p.Killed += p_Killed;
 
             return p;
         }
 
-        void p_Killed(IKillable killed, IGameObject source)
-        {
+        void p_Killed(IKillable killed, IGameObject source) {
             GameOver = true;
         }
 
-        private static double CalcAngle(Point first, Point second)
-        {
+        private static double CalcAngle(Point first, Point second) {
             return GameWorld.CalcAngle(first, second);
         }
 
-        void target_Killed(IKillable killed, IGameObject source)
-        {
+        void target_Killed(IKillable killed, IGameObject source) {
             Player.Target = null;
         }
 
@@ -185,84 +163,66 @@ namespace Repository
 
         #region Public Methods
 
-        public void Play()
-        {
+        public void Play() {
             Init();
             GameLoop();
         }
 
-        public void Exit()
-        {
+        public void Exit() {
 
         }
 
-        public void Pause()
-        {
+        public void Pause() {
 
         }
-        public void MovePlayer()
-        {
+        public void MovePlayer() {
             Player.TargetSpeed = 10;
         }
 
-        public void BreakPlayer()
-        {
+        public void BreakPlayer() {
             Player.TargetSpeed = 0;
         }
 
-        public void SetPlayerAnglePoint(Point destination)
-        {
+        public void SetPlayerAnglePoint(Point destination) {
             if (Player != null)
-                Player.Angle = (int) CalcAngle(new Point(Game.Size.Width/2, Game.Size.Height/2), destination);
+                Player.Angle = (int)CalcAngle(new Point(Game.Size.Width / 2, Game.Size.Height / 2), destination);
         }
 
-        public void CastSpell(ActionSlot actionSlot)
-        {
-            try
-            {
+        public void CastSpell(ActionSlot actionSlot) {
+            try {
                 Player.Attack(actionSlot);
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 Console.WriteLine(e);
             }
         }
 
-        public Spell GetSpell(ActionSlot actionSlot)
-        {
-            try
-            {
+        public Spell GetSpell(ActionSlot actionSlot) {
+            try {
                 return Player.SpellHandler.Spells[(int)actionSlot];
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 Console.WriteLine(e);
             }
             return null;
         }
 
-        public Cooldown GetPlayerCooldown(ActionSlot actionSlot)
-        {
+        public Cooldown GetPlayerCooldown(ActionSlot actionSlot) {
             Spell s = Player.SpellTree.GetSpell(actionSlot);
             Type t = s != null ? s.GetType() : null;
-            if(t != null)
+            if (t != null)
                 if (Player.SpellHandler.Cooldowns.ContainsKey(t))
                     return Player.SpellHandler.Cooldowns[t];
 
             return null;
         }
 
-        public void ChangeTarget(Point targetLocation, int range, bool fromMap)
-        {
+        public void ChangeTarget(Point targetLocation, int range, bool fromMap) {
             Player.Target = null;
             IGameObject target = null;
             target = fromMap ? gameWorld.GetClosestGameObjectFromMap(targetLocation, range) : gameWorld.GetClosestGameObject(targetLocation, null, range);
 
-            if (target != null)
-            {
+            if (target != null) {
                 bool isTarget = false;
-                foreach (var t in Player.Targets)
-                {
+                foreach (var t in Player.Targets) {
                     if (target.GetType() == t || target.GetType().IsSubclassOf(t)) isTarget = true;
                 }
 
@@ -274,8 +234,7 @@ namespace Repository
             }
         }
 
-        public Rectangle GetObjectArea(IGameObject gameObject)
-        {
+        public Rectangle GetObjectArea(IGameObject gameObject) {
             return new Rectangle((int)(gameObject.Location.X - OffsetX + gameObject.MotionBehavior.Area.X), (int)(gameObject.Location.Y - OffsetY + gameObject.MotionBehavior.Area.Y), gameObject.MotionBehavior.Area.Width, gameObject.MotionBehavior.Area.Height);
         }
 

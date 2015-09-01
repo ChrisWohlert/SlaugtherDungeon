@@ -30,10 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CHWGameEngine, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\CHWGameEngine\CHWGameEngine\CHWGameEngine\bin\Debug\CHWGameEngine.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -140,6 +136,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\FloorsMedieval.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\CHWGameEngine\CHWGameEngine\CHWGameEngine\CHWGameEngine.csproj">
+      <Project>{aec0e4f3-9aff-4bf5-8449-7e6b397278f1}</Project>
+      <Name>CHWGameEngine</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

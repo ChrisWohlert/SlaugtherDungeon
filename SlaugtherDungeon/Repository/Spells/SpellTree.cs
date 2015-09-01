@@ -87,7 +87,7 @@ namespace Repository.Spells
                 if (s != null)
                 {
                     foreach (var decorator in attackDecorators[spellType])
-                        s = decorator(s);
+                            s = decorator(s);
 
                     if (!SpellHandler.Cooldowns.ContainsKey(s.GetType()))
                         SpellHandler.Cooldowns[s.GetType()] = cd;

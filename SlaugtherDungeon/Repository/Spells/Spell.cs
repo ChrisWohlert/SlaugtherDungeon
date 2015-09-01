@@ -14,13 +14,13 @@ namespace Repository.Spells
     public delegate void SendSpell(Spell spell, IGameObject target);
     public abstract class Spell : IGameObject, ICloneable
     {
-        public virtual Character Source { get; set; }
-        public virtual GameWorld GameWorld { get; set; }
+        public Character Source { get; set; }
+        public GameWorld GameWorld { get; set; }
         private IMotionBehavior motionBehavior;
 
         public virtual double Damage { get; set; }
         public virtual int Cost { get; set; }
-        public virtual int Range { get; set; }
+        public int Range { get; set; }
         public virtual SpellHandler SpellHandler { get; set; }
 
         #region IGameObject Properties
@@ -60,10 +60,9 @@ namespace Repository.Spells
             Source = source;
             GameWorld = gameWorld;
             Range = range;
-            Init();
         }
 
-        private void Init()
+        protected void Init()
         {
             Acceleration = 5;
             Angle = Source.Target != null ? (int)GameWorld.CalcAngle(Source.Location.ToPoint(), Source.Target.Location.ToPoint()) : Source.Angle;
