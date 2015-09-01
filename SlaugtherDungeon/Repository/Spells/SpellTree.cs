@@ -9,6 +9,7 @@ using CHWGameEngine;
 using Repository.AttackBehavior;
 using Repository.Buffs;
 using Repository.Characters;
+using Repository.Spells.SpellDecorators;
 
 namespace Repository.Spells
 {
@@ -19,7 +20,7 @@ namespace Repository.Spells
         public GameWorld GameWorld { get; set; }
 
         private Dictionary<ActionSlot, Func<Spell>> attackMap;
-        private Dictionary<Type, List<IAttackBehavior>> attackBehaviorMap;
+        private Dictionary<Type, List<Func<Spell, Spell>>> attackDecorators; 
 
         public SpellTree(Character character, SpellHandler spellHandler, GameWorld gameWorld)
         {
@@ -27,53 +28,23 @@ namespace Repository.Spells
             SpellHandler = spellHandler;
             GameWorld = gameWorld;
             attackMap = new Dictionary<ActionSlot, Func<Spell>>();
-            attackBehaviorMap = new Dictionary<Type, List<IAttackBehavior>>();
+            attackDecorators = new Dictionary<Type, List<Func<Spell, Spell>>>();
         }
 
         public void AddSpell(ActionSlot actionSlot, Type spellType)
         {
             Func<Spell> spell = CreateSpell(spellType);
 
-            if(spell != null)
+            if (spell != null)
+            {
                 attackMap.Add(actionSlot, spell);
+                attackDecorators[spellType] = new List<Func<Spell, Spell>>();
+            }
         }
 
-        public void AddAttackBehavior(Type spellType, Type attackType, Buff buff = null, Type spawnSpellType = null)
+        public void AddAttackBehavior(Type spellType, Type attackType)
         {
-            IAttackBehavior attack = null;
-
-            if(!attackBehaviorMap.ContainsKey(spellType))
-                attackBehaviorMap[spellType] = new List<IAttackBehavior>();
-
-            if (attackType == typeof (BuffDurationAttackBehavior))
-            {
-                if (buff != null)
-                    attackBehaviorMap[spellType].Add(new BuffDurationAttackBehavior(GameWorld, buff));
-            }
-            else if (attackType == typeof (ChainAttackBehavior))
-                attack = new ChainAttackBehavior(GameWorld);
-            else if (attackType == typeof (ChangeImageAttackBehavior))
-               attack = new ChangeImageAttackBehavior(GameWorld);
-            else if (attackType == typeof (CircleSpellAttackBehavior))
-                attack = new CircleSpellAttackBehavior(GameWorld);
-            else if (attackType == typeof (NormalAttackBehavior))
-                attack = new NormalAttackBehavior(GameWorld);
-            else if (attackType == typeof (NovaAttackBehavior))
-                 attack = new NovaAttackBehavior(GameWorld);
-            else if (attackType == typeof (RejectSpellAttackBehavior))
-                attack = new RejectSpellAttackBehavior(GameWorld);
-            else if (attackType == typeof (RemoveTargetSpellAttackBehavior))
-                attack = new RemoveTargetSpellAttackBehavior(GameWorld);
-            else if (attackType == typeof (SplitShotAttackBehavior))
-                attack = new SplitShotAttackBehavior(GameWorld);
-            else if (attackType == typeof (TargetAttackBehavior))
-                attack = new TargetAttackBehavior(GameWorld);
-            else if (attackType == typeof (SpawnSpellAttackBehavior))
-                if (spawnSpellType != null)
-                    attack = new SpawnSpellAttackBehavior(GameWorld, CreateSpell(spawnSpellType));
-
-            if (attack != null)
-                attackBehaviorMap[spellType].Add(attack);
+            attackDecorators[spellType].Add(spell => new NormalAttack(spell));
         }
 
         public Spell GetSpell(ActionSlot actionSlot)
@@ -113,14 +84,14 @@ namespace Repository.Spells
                     cd = new Cooldown(1);
                 }
 
-                if (!SpellHandler.Cooldowns.ContainsKey(spellType))
-                    SpellHandler.Cooldowns[spellType] = cd;
+                if (s != null)
+                {
+                    foreach (var decorator in attackDecorators[spellType])
+                        s = decorator(s);
 
-                if(s != null)
-                    foreach (var ab in attackBehaviorMap[s.GetType()])
-                    {
-                        s.AttackBehaviors.Add(ab);
-                    }
+                    if (!SpellHandler.Cooldowns.ContainsKey(s.GetType()))
+                        SpellHandler.Cooldowns[s.GetType()] = cd;
+                }
 
                 return s;
             };

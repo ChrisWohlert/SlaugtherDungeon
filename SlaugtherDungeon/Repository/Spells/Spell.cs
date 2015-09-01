@@ -14,28 +14,26 @@ namespace Repository.Spells
     public delegate void SendSpell(Spell spell, IGameObject target);
     public abstract class Spell : IGameObject, ICloneable
     {
-        public Character Source { get; set; }
-        public GameWorld GameWorld { get; set; }
+        public virtual Character Source { get; set; }
+        public virtual GameWorld GameWorld { get; set; }
         private IMotionBehavior motionBehavior;
 
-        public double Damage { get; set; }
-        public int Cost { get; set; }
-        public int Range { get; set; }
-        public SpellHandler SpellHandler { get; set; }
-
-        public List<IAttackBehavior> AttackBehaviors { get; set; } 
+        public virtual double Damage { get; set; }
+        public virtual int Cost { get; set; }
+        public virtual int Range { get; set; }
+        public virtual SpellHandler SpellHandler { get; set; }
 
         #region IGameObject Properties
 
-        public DecimalPoint Location { get; set; }
-        public Image Image { get; set; }
-        public int Angle { get; set; }
-        public double ActualSpeed { get; set; }
-        public double Acceleration { get; set; }
-        public double TargetSpeed { get; set; }
-        public DecimalPoint Inertia { get; set; }
-        public Paralax Paralax { get; set; }
-        public IMotionBehavior MotionBehavior
+        public virtual DecimalPoint Location { get; set; }
+        public virtual Image Image { get; set; }
+        public virtual int Angle { get; set; }
+        public virtual double ActualSpeed { get; set; }
+        public virtual double Acceleration { get; set; }
+        public virtual double TargetSpeed { get; set; }
+        public virtual DecimalPoint Inertia { get; set; }
+        public virtual Paralax Paralax { get; set; }
+        public virtual IMotionBehavior MotionBehavior
         {
             get { return motionBehavior; }
             set
@@ -46,16 +44,16 @@ namespace Repository.Spells
             }
         }
 
-        public bool IsPhysicalObject { get; set; }
-        public IDrawBehavior DrawBehavior { get; set; }
+        public virtual bool IsPhysicalObject { get; set; }
+        public virtual IDrawBehavior DrawBehavior { get; set; }
 
         #endregion
 
-        public IDamageBehavior DamageBehavior { get; set; }
+        public virtual IDamageBehavior DamageBehavior { get; set; }
 
-        public event SendSpell Collision;
+        public virtual event SendSpell Collision;
 
-        public event SendSpell Split;
+        public virtual event SendSpell Split;
 
         protected Spell(Character source, GameWorld gameWorld, int range)
         {
@@ -83,19 +81,13 @@ namespace Repository.Spells
             MotionBehavior.CanMoveThroughObjects = true;
             SpellHandler = Source.SpellHandler;
             SpellHandler.Spells.Add(this);
-            AttackBehaviors = new List<IAttackBehavior>();
 
             GameWorld.Collision += GameWorld_Collision;
             GameWorld.Split += GameWorld_Split;
         }
 
-        public void Cast()
+        public virtual void Cast()
         {
-            foreach (var attack in AttackBehaviors)
-            {
-                attack.Attack(this);
-            }
-
             GameWorld.GameObjects.Add(this);
         }
         void GameWorld_Collision(ref IGameObject object1, ref IGameObject object2)

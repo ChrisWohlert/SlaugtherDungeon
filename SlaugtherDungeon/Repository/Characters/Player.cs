@@ -26,7 +26,7 @@ namespace Repository.Characters
             Targets.Add(typeof(Enemy));
 
             SpellTree.AddSpell(ActionSlot.First, typeof(Fireball));
-            SpellTree.AddAttackBehavior(typeof(Fireball), typeof(NormalAttackBehavior));
+            SpellTree.AddAttackBehavior(SpellTree.GetSpell(ActionSlot.First).GetType(), typeof(NormalAttackBehavior));
         }
     }
 }

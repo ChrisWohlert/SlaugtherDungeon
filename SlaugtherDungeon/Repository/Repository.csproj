@@ -90,6 +90,8 @@
     <Compile Include="Spells\IceGround.cs" />
     <Compile Include="Spells\Lightningbolt.cs" />
     <Compile Include="Spells\Spell.cs" />
+    <Compile Include="Spells\SpellDecorators\NormalAttack.cs" />
+    <Compile Include="Spells\SpellDecorators\SpellDecorator.cs" />
     <Compile Include="Spells\SpellHandler.cs" />
     <Compile Include="Spells\SpellShieldNova.cs" />
     <Compile Include="Spells\SpellTree.cs" />

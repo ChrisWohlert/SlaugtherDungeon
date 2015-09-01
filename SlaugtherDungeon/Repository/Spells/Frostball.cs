@@ -30,7 +30,6 @@ namespace Repository.Spells
                 Acceleration = this.Acceleration,
                 ActualSpeed = this.ActualSpeed,
                 Angle = this.Angle,
-                AttackBehaviors = new List<IAttackBehavior>(this.AttackBehaviors),
                 Cost = this.Cost,
                 Damage = this.Damage,
                 Image = this.Image,
