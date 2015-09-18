@@ -11,18 +11,18 @@ namespace Repository.Spells.SpellDecorators {
         }
 
         public override void Cast() {
-            this.Collision += (spell, target) => {
-                if (spell != this) return;
+            RefSpell.Collision += (spell, target) => {
+                if (spell != RefSpell) return;
                 if (target == spell.Source) return;
 
                 if (spell.DamageBehavior.DoDamage(target))
                     spell.SpellHandler.Remove(spell);
             };
 
-            this.MotionBehavior.Moved += (movementObject, e) => {
+            RefSpell.MotionBehavior.Moved += (movementObject, e) => {
                 if (this.Range == 0) return;
                 if (e.TotalDistanceMoved < this.Range) return;
-                this.SpellHandler.Remove(this);
+                this.SpellHandler.Remove(RefSpell);
             };
 
             RefSpell.Cast();
